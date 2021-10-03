@@ -1,0 +1,81 @@
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  forwardRef,
+  ElementType
+} from "react";
+import JSONDigger from "../../utils/jsonDiggerUtils";
+import ChartNode from "../chartNode/ChartNode";
+import "./orgChart.css";
+
+interface ChartContainerProps {
+  datasource: object,
+  pan?: boolean,
+  NodeTemplate: ElementType,
+  draggable: boolean,
+}
+
+const ChartContainer = forwardRef(
+  (
+    {
+      datasource,
+      NodeTemplate,
+      draggable,
+    }: ChartContainerProps,
+    ref
+  ) => {
+    const chart = useRef();
+
+    const attachRel = (data:any, flags:string) => {
+      if (String(data.id).indexOf("m") === -1) {
+        data.id = "m" + data.id;
+      } else {
+        data.id = data.id;
+      } 
+      data.relationship =
+        flags + (data.reports && data.reports.length > 0 ? 1 : 0);
+      if (data.reports) {
+        data.reports.forEach(function (item: any) {
+          attachRel(item, "1" + (data.reports.length > 1 ? 1 : 0));
+        });
+      }
+      return data;
+    };
+
+    const [ds, setDS] = useState(datasource);
+    useEffect(() => {
+      setDS(datasource);
+    },[datasource]);
+
+    const dsDigger = new JSONDigger(datasource, "id", "reports");
+
+    const changeHierarchy = async (draggedItemData:any, dropTargetId:string) => {
+      await dsDigger.removeNode(draggedItemData.id);
+      await dsDigger.addReports(dropTargetId, draggedItemData);
+      setDS({ ...dsDigger.ds });
+    };
+
+    return (
+      <div
+      className={"orgchart-container"}
+      >
+        <div
+          ref={chart}
+          className="orgchart"
+        >
+          <ul>
+            <ChartNode
+              datasource={attachRel(ds, "00")}
+              NodeTemplate={NodeTemplate}
+              draggable={draggable}
+              changeHierarchy={changeHierarchy}
+            />
+          </ul>
+        </div>
+      </div>
+    );
+  }
+);
+
+export default ChartContainer;

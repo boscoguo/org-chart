@@ -1,0 +1,134 @@
+.orgchart ul {
+  padding-left: 0;
+  text-align: center;
+  display: flex;
+  margin: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.orgchart ul li {
+  display: inline-block;
+  position: relative;
+}
+
+/* excluding root node */
+.orgchart > ul > li > ul li::before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: -1px;
+  width: 100%;
+  border-top: 1px solid rgba(191, 191, 191, 0.4);;
+  box-sizing: border-box;
+}
+
+.orgchart > ul > li > ul li:first-child::before {
+  left: calc(50% - 1px);
+  width: calc(50% + 1px);
+}
+
+.orgchart > ul > li > ul li:last-child::before {
+  width: calc(50% + 1px);
+}
+
+.orgchart > ul > li > ul li:only-child::before {
+  width: 2px;
+}
+.orgchart ul li .oc-node {
+  width: 200px;
+  height: 79px;
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  padding: 3px;
+  box-shadow: 0px 0px 6px #E4E4E4;
+  border-bottom: 2px solid #E30513;
+  margin: 12px 40px 31px;
+}
+.orgchart ul li .oc-node.allowedDrop {
+  border: 2px dashed #DADADA;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 6px #E4E4E4;
+}
+.orgchart ul li .oc-node.currentDropTarget {
+  background-color: rgba(68, 157, 68, 0.9);
+}
+.orgchart ul li .oc-node:hover {
+  background: rgba(227, 5, 19, 0.07);
+  box-shadow: 0px 0px 6px #E4E4E4;
+}
+/* excluding root node */
+.orgchart > ul > li > ul li > .oc-node::before {
+  content: "";
+  position: absolute;
+  top: -22px;
+  left: calc(50% - 1px);
+  width: 1px;
+  height: 20px;
+  background-color: rgba(191, 191, 191, 0.4);
+}
+
+/* excluding leaf node */
+.orgchart ul li .oc-node:not(:only-child)::after {
+  content: "";
+  position: absolute;
+  bottom: -22px;
+  left: calc(50% - 1px);
+  width: 1px;
+  height: 20px;
+  background-color: rgba(191, 191, 191, 0.4);
+}
+
+.orgchart ul li .oc-node .oc-employee {
+ display: flex;
+ align-items: center;
+ height: 100%;
+ margin-left: 10px;
+}
+.orgchart ul li .oc-node .oc-employee-photo {
+  margin-right: 10px;
+}
+.orgchart ul li .oc-node .oc-employee-photo img {
+  width: 44px;
+  height: 44px;
+} 
+.orgchart ul li .oc-node .oc-employee-heading {
+  box-sizing: border-box;
+  padding: 2px;
+  margin: 0;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #212121;
+  line-height: 20px;
+}
+
+.orgchart ul li .oc-node .oc-employee-heading .oc-symbol {
+  float: left;
+  margin-top: 12px;
+  margin-left: 2px;
+}
+
+.orgchart ul li .oc-node .oc-employee-heading .oc-symbol::before {
+  background-color: #fff;
+  border-color: rgba(217, 83, 79, 0.8);
+}
+
+.orgchart ul li .oc-node .oc-employee-heading .oc-symbol::after {
+  background-color: #fff;
+}
+
+.orgchart ul li .oc-node .oc-employee-content {
+  box-sizing: border-box;
+  padding: 2px;
+  font-size: 12px;
+  text-align: left;
+  color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 13.8px;
+}
+
