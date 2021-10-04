@@ -70,8 +70,10 @@ This application is a draggable orgnization chart. There are three states for th
 #### `the intial state`
 
 1. Show on chrome 
+<img width="1063" alt="屏幕快照 2021-10-04 下午11 07 46" src="https://user-images.githubusercontent.com/20954764/135851390-349eee3d-f64a-4341-baae-093e752013f6.png">
 
 2. Show on firefox
+<img width="1444" alt="屏幕快照 2021-10-04 下午11 29 40" src="https://user-images.githubusercontent.com/20954764/135851496-3068268a-85f9-4408-a3bf-4a05a22d24f7.png">
 
 #### `hover state`
 
