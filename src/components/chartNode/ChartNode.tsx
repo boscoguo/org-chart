@@ -92,11 +92,12 @@ const ChartNode = ({
         onDragOver={dragoverHandler}
         onDragEnd={dragendHandler}
         onDrop={dropHandler}
+        data-testid="employee-item"
       >
         {NodeTemplate ? (
           <NodeTemplate nodeData={datasource} />
         ) : (
-          <div className="oc-employee">
+          <div className="oc-employee" data-testid={`employee-info-${datasource.id}`}>
             <div className="oc-employee-photo">
               <img src={datasource.image} alt={datasource.name}/>
             </div>
