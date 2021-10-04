@@ -49,79 +49,61 @@ describe('JSONDigger', () => {
 
   describe('#findNodeById()', () => {
 
-    // test('when the node with given id exist', () => {
-      it('should return node "Lao Lao" when id is "1"', async () => {
+      it('should return node "Lao Lao" when id is "1" when the node with given id exist', async () => {
         const node = await digger.findNodeById('1');
-        // node.name.should.equal('Lao Lao');
         expect(node.name).toEqual('Lao Lao');
       });
-      it('should return node "Tie Hua" when id is "4"', async () => {
+      it('should return node "Tie Hua" when id is "4" when the node with given id exist', async () => {
         const node = await digger.findNodeById('4');
-        // node.name.should.equal('Tie Hua');
         expect(node.name).toEqual('Tie Hua');
       });
-      it('should return node "Pang Pang" when id is "6"', async () => {
+      it('should return node "Pang Pang" when id is "6" when the node with given id exist', async () => {
         const node = await digger.findNodeById('6');
-        // node.name.should.equal('Pang Pang');
         expect(node.name).toEqual('Pang Pang')
       });
-    // });
 
-    // test('when the node with given id doesn\'t exist', () => {
-      it('should throw an error', async () => {
+      it('should throw an error when the node with given id doesn\'t exist', async () => {
         try {
           await digger.findNodeById('11');
         } catch (err) {
-          // err.message.should.equal('The node doesn\'t exist.');
           expect(err.message).toEqual('The node doesn\'t exist.');
         }
       });
-    // });
 
-    // test('when users don\'t provide valid parameters', () => {
-      it('should throw an error when id is invalid', async () => {
+      it('should throw an error when id is invalid when users don\'t provide valid parameters', async () => {
         try {
           await digger.findNodeById(null);
         } catch (err) {
-          // err.message.should.equal(idErrMsg);
           expect(err.message).toEqual(idErrMsg);
         }
 
         try {
           await digger.findNodeById(undefined);
         } catch (err) {
-          // err.message.should.equal(idErrMsg);
           expect(err.message).toEqual(idErrMsg);
         }
 
         try {
           await digger.findNodeById('');
         } catch (err) {
-          // err.message.should.equal(idErrMsg);
           expect(err.message).toEqual(idErrMsg);
         }
       });
-    // });
 
   });
 
   
   describe('#findParent()', () => {
 
-    // test('when the parent node exists', () => {
-      it('should return node "Su Miao" when id is "4"', async () => {
+      it('should return node "Su Miao" when id is "4" when the parent node exists', async () => {
         const node = await digger.findParent('4');
-        // node.name.should.equal('Su Miao');
         expect(node.name).toEqual('Su Miao');
       });
-      it('should return node "Hei Hei" when id is "7"', async () => {
+      it('should return node "Hei Hei" when id is "7" when the parent node exists', async () => {
         const node = await digger.findParent('7');
-        // node.name.should.equal('Hei Hei');
         expect(node.name).toEqual('Hei Hei');
       });
-    // });
 
-    // test('when the parent node doesn\'t exist', () => {
       const errMessage = 'The parent node doesn\'t exist.';
 
       it('should throw an error', async () => {
@@ -134,36 +116,29 @@ describe('JSONDigger', () => {
         try {
           await digger.findParent('11');
         } catch (err) {
-          // err.message.should.equal(errMessage);
           expect(err.message).toEqual(errMessage);
         }
       });
-    // });
 
-    // test('when users don\'t provide valid parameters', () => {
       it('should throw an error when id is invalid', async () => {
         try {
           await digger.findParent(null);
         } catch (err) {
-          // err.message.should.equal(idErrMsg);
           expect(err.message).toEqual(idErrMsg);
         }
 
         try {
           await digger.findParent(undefined);
         } catch (err) {
-          // err.message.should.equal(idErrMsg);
           expect(err.message).toEqual(idErrMsg);
         }
 
         try {
           await digger.findParent('');
         } catch (err) {
-          // err.message.should.equal(idErrMsg);
           expect(err.message).toEqual(idErrMsg);
         }
       });
-    // });
 
   });
 
